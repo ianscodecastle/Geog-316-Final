@@ -15,6 +15,11 @@ arcpy.env.workspace = ''
 feature_list = arcpy.ListFeatureClasses()
 print(feature_list)
 
+#Make temporary layer
 arcpy.MakeFeatureLayer_management(counties, 'JeffersonCounty')
+
+#Select (county) by attribute
 arcpy.SelectLayerByAttribute_management('JeffersonCounty', 'NEW_SELECTION', """ "COUNTYNAME" = 'Jefferson' """)
+
+#Save the selection as a feature layer
 arcpy.CopyFeatures_management("JeffersonCounty", "D:\Projects\Final Project\Data\JeffersonCountyAL")
